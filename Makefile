@@ -129,7 +129,7 @@ endif
 
 .PHONY: container
 container:
-	docker build --build-arg=TARGET_ARCH=$(TARGET_ARCH) --build-arg=TARGET_OS=$(TARGET_OS) -t cloudflare/cloudflared-$(TARGET_OS)-$(TARGET_ARCH):"$(VERSION)" .
+	docker buildx build -t cloudflare/cloudflared:"$(VERSION)" --platform linux/amd64,linux/arm64,linux/arm/v7 .
 
 .PHONY: test
 test: vet
